@@ -1,0 +1,29 @@
+# Secrets
+.env
+*.env
+openai_key.txt
+**/openai_key.txt
+Secrets.xcconfig
+
+# Eval outputs
+eval/results/
+eval/run.log
+eval/__pycache__/
+
+# macOS / Xcode
+.DS_Store
+xcuserdata/
+*.xcuserstate
+build/
+DerivedData/
+*.xcworkspace/xcuserdata/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
