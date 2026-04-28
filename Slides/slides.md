@@ -114,6 +114,6 @@ Both architectures hit 100% grounding (no hallucinated values). Multi-agent's wi
 
 **Jerome Zhang** · MSAI High-Risk Project · Spring 2026
 
-Code & report: [repository URL]
+Code & report: https://github.com/jeromez0/health-insight-agent
 
 Questions?
