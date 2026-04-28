@@ -10,6 +10,16 @@ eval/results/
 eval/run.log
 eval/__pycache__/
 
+# Slide build artifacts
+Slides/frames/
+Slides/slides.pdf
+
+# Video uploads (uploaded to Panopto, not committed)
+Video/
+
+# Zips
+*.zip
+
 # macOS / Xcode
 .DS_Store
 xcuserdata/

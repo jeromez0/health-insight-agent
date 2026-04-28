@@ -293,20 +293,23 @@ def build_slide_5_implementation(prs):
         p = add_para(tf, first=True)
         add_run(p, value, size=16, color=INK)
 
-    # screenshot placeholder on right
-    placeholder = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, Inches(9.4), Inches(1.4), Inches(3.4), Inches(5.4))
-    placeholder.line.color.rgb = RGBColor(0xC7, 0xC7, 0xCC)
-    placeholder.line.width = Pt(1)
-    placeholder.line.dash_style = 7  # dashed
-    placeholder.fill.solid()
-    placeholder.fill.fore_color.rgb = WHITE
-    tf = placeholder.text_frame
-    tf.vertical_anchor = MSO_ANCHOR.MIDDLE
-    p = tf.paragraphs[0]
-    p.alignment = PP_ALIGN.CENTER
-    add_run(p, "[App screenshot]", size=14, color=SUBTLE)
-    p = add_para(tf, alignment=PP_ALIGN.CENTER, space_before=6)
-    add_run(p, "Drop in the segmented control + insights card view", size=11, color=SUBTLE)
+    # app screenshot on right (preserves aspect ratio, vertical iPhone)
+    import os
+    screenshot = os.path.join(os.path.dirname(__file__), "app_screenshot.png")
+    if os.path.exists(screenshot):
+        # iPhone aspect is ~2.16 tall:1 wide; fit into ~5.4" height
+        from PIL import Image
+        with Image.open(screenshot) as img:
+            w, h = img.size
+        max_h = 5.4
+        ratio = w / h
+        pic_h = Inches(max_h)
+        pic_w = Inches(max_h * ratio)
+        # center horizontally in the right zone (9.4–12.8)
+        right_zone_left = 9.4
+        right_zone_w = 3.4
+        pic_left = Inches(right_zone_left + (right_zone_w - max_h * ratio) / 2)
+        s.shapes.add_picture(screenshot, pic_left, Inches(1.4), pic_w, pic_h)
 
     add_footer(s, "Health Insight Agent  ·  Slide 5 / 8")
 
